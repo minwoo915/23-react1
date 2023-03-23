@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+# 23-React1 김민우
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 0323 4주차 수업내용
 
-## Available Scripts
+### 1.새 프로잭트 생성
 
-In the project directory, you can run:
+<br>
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 0316 3주차 수업내용...
 
-### `npm test`
+### 1.node 설치 후 설치 확인
+1. 구글에 node 검색 후 LTS버전 설치하기.
+2. cmd 창을 열어서 node -v 혹은 node --version으로 설치 확인
+   
+### 2.NPM(Node Package Manager)과 NPX(Node Package Runner)
+* NPM : Node.js에서 사용하는 패키지를 다운 받을 수 있는 프로그램
+* NPX : NPM 5.2.0 버전부터 새로 추가된 도구
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3.리액트의 장점
+1. 빠른 업데이트와 랜더링 속도
+2. 컴포넌트 기반의 구조
+3. 재사용성
+4. 든든한 지원군
+5. 활발한 지식 공유 및 커뮤니티
 
-### `npm run build`
+### 4.리액트의 단점
+1. 방대한 학습량
+2. 높은 상태 관리 복잡도
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 5.리액트 프로잭트 생성
+1. 새로운 작업폴더 들어가기
+2. 터미널에서 npx create-react-app '폴더이름' 작성 후 설치
+```
+npx create-react-app ex
+```
+3. 설치가 되면 작업 폴더를 다시 열고 npm start로 실행
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+<br>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 0309 2주차 수업내용
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1.git 다운로드 후 사용자 설정
+이름과 이메일 설정하기
+```
+$ git config --global user.name "user.name"
+$ git config --global user.email "email@example.com"
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2.연산자
+* a++ : 식을 먼저 처리하고 1을 증가시킨다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* ++a : 1을 먼저 추가하고 식을 처리한다.
 
-## Learn More
+### 3.컴포넌트의 종류
+* 클래스형 컴포넌트
+* 함수형 컴포넌트
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 4. 함수의 종류
+* funtion statement형
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+``` js
+function add(a, b) {
+    return a + b;
+}
+```
+* arrow function expression형
+``` js
+const add = (a, b) => {
+    return a + b;
+}
+```
 
-### Code Splitting
+### 5. 마크다운 주요 문법
+* 큰 제목
+```
+This is an H1
+=============
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This is an H1
+=============
 
-### Analyzing the Bundle Size
+* 작은 제목
+```
+This is an H2
+-------------
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This is an H2
+-------------
 
-### Making a Progressive Web App
+* 글머리 : 1 ~ 6 까지만 지원
+```
+# This is a H1
+## This is a H2
+### This is a H3
+#### This is a H4
+##### This is a H5
+###### This is a H6
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# This is a H1
+## This is a H2
+### This is a H3
+#### This is a H4
+##### This is a H5
+###### This is a H6
 
-### Advanced Configuration
+* 순서있는 목록
+```
+1. 첫번째
+2. 두번째
+3. 세번째
+```
+1. 첫번째
+2. 두번째
+3. 세번째
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* 순서없는 목록
+```
+* 별
+    + 플러스
+        - 마이너스
+```
+* 별
+  + 플러스
+    - 마이너스
