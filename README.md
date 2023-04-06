@@ -7,6 +7,211 @@
 * 큰 컴포넌트에서 일부를 추출해서 컴포넌트를 만드는 것입니다.
     + 실무에서는 처음부터 1개의 컴포넌트에 하나의 기능만 사용하도록 설계하는 것이 좋습니다.
 
+### 2. 댓글 컴포넌트 실습
+
+1. Comment.jsx라는 이름의 파일을 만들고 Comment라는 이름의 리액트 함수 컴포넌트 만들기
+
+#### Comment.jsx
+
+```js
+import React from "react";
+
+function Comment(props) {
+    return (
+        <div>
+            <h1>내가 만든 첫 컴포넌트.</h1>
+        </div>
+    );
+}
+
+export default Comment;
+```
+
+2. CommentList.jsx 파일을 새로 만들고 CommentList라는 이름의 리액트 함수 컴포넌트 만들기
+   
+#### CommentList.jsx
+
+```js
+import React from "react";
+import Comment from "./Comment";
+
+function CommentList(props) { 
+    return (
+        <div>
+            <Comment />
+        </div>
+    )
+}
+
+export default CommentList;
+```
+
+3. index.js파일 수정하기
+
+#### index.js
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+import Library from './chapter_03/Library';
+import Clock from './chapter_04/Clock';
+import CommentList from './chapter_05/CommentList';
+
+
+  const root = ReactDOM.createRoot(document.getElementById('root')); 
+  root.render(
+    <React.StrictMode>
+      <CommentList />
+    </React.StrictMode>
+  );
+
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+```
+
+4. CSS를 추가하고 나서 Comment 컴포넌트에 작성자 이름과 댓글 내용을 동적으로 변경할 수 있게 하기 위해 props를 추가하기
+
+#### Comment.jsx
+
+```js
+import React from "react";
+
+const styles = {
+    wrapper: {
+        margin: 8,
+        padding: 8,
+        display: "flex",
+        flexDirection: "row",
+        border: "1px solid grey",
+        borderRadius: 16,
+    },
+    imageContainer: {},
+    image: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+    },
+    contentContainer: {
+        marginLeft: 8,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+    },
+    nameText: {
+        color: "black",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+    commentText: {
+        color: "black",
+        fontSize: 16,
+    },
+  };
+
+function Comment(props) {
+    return (
+        <div style={styles.wrapper}>
+            <div style={styles.imageContainer}>
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+                    alt="프로필 이미지"
+                    style={styles.image}
+                />                
+            </div>
+
+            <div style={styles.contentContainer}>
+                <span style={styles.nameText}>{props.name}</span>
+                <span style={styles.commentText}>{props.comment}</span>
+            </div>
+        </div>
+    );
+}
+
+export default Comment;
+```
+
+5. CommentList 수정하기
+
+#### CommentList.jsx
+
+```js
+import React from "react";
+import Comment from "./Comment";
+
+function CommentList(props) { 
+    return (
+        <div>
+            <Comment name={"이인재"} Comment={"안녕하세요, 소플입니다"}/>
+        </div>
+    )
+}
+
+export default CommentList;
+```
+
+6. map() 함수를 추가해서 Comment 컴포넌트를 리턴하도록 코드를 작성하기
+
+#### CommentList.jsx
+
+```js
+import React from "react";
+import Comment from "./Comment";
+
+const comments = [
+    {
+        name: "이인재",
+        comment: "안녕하세요, 소플입니다.",
+    },
+    {
+        name: "유재석",
+        comment: "리액트 재미있어요.",
+    },
+    {
+        name: "강민경",
+        comment: "저도 리액트 배워보고 싶어요.",
+    },
+];
+
+function CommentList(props) { 
+    return (
+        <div>
+            {comments.map((foo) => {
+                return (
+                    <Comment name={foo.name} comment={foo.comment}/>
+                )
+            })}
+        </div>
+    )
+}
+
+export default CommentList;
+```
+
+### 3. state
+* State는 리액트 컴포넌트의 상태를 의미합니다.
+* 상태의 의미는 정상인지 비정상인지가 아니라 컴포넌트의 데이터를 의미합니다.
+* 정확히는 컴포넌트의 변경가능한 데이터를 의미합니다.
+* State가 변하면 다시 렌더링이 되기 때문에 렌더링과 관련된 값만 state에 포함시켜야 합니다.
+* state의 특징은 리액트 만의 특별한 형태가 아닌 단지 자바스크립트 객체일 뿐입니다.
+
+### 4. 생명주기에 대해 알아보기
+* 생명주기는 컴포넌트의 생성 시점, 종료 시점을 나타내는 것입니다.
+* constructor가 실행되면서 컴포넌트가 생성됩니다.
+* 생성 직후 conponentDidMount() 함수가 호출됩니다.
+* 컴포넌트가 소멸하기 전까지 여러 번 랜더링 합니다.
+* 랜더링은 props, setState(), forceUpdate()에 의해 상태가 변경되면 이루어집니다.
+* 그리고 랜더링이 끝나면 conponentDinUpdate() 함수가 호출됩니다.
+* 마지막으로 컴포넌트가 언마운트 되면 conponentWillUnmount() 함수가 호출됩니다.
+
+
+
 <br>
 
 ---
@@ -71,7 +276,6 @@ Props의 특징
 Pure 함수 vs Impure 함수
 * Pure함수는 인수로 받은 정보가 함수 내부에서도 변하지 않는 함수입니다.
 * Impure함수는 인수로 받은 정보가 함수 내부에서 변하는 함수입니다.
-
 
 <br>
 
