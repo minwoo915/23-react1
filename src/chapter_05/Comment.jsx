@@ -45,7 +45,7 @@ function Comment(props) {
 
             <div style={styles.contentContainer}>
                 <span style={styles.nameText}>{props.name}</span>
-                <span style={styles.commentText}>{props.Comment}</span>
+                <span style={styles.commentText}>{props.comment}</span>
             </div>
         </div>
     );
