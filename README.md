@@ -1,5 +1,100 @@
 # 23-React1 김민우
 
+## 0427 9주차 수업내용
+
+### 1. 이벤트 처리하기
+* DOM에서 클릭 이벤트를 처리하는 예제 코드.
+  
+```js
+<button onclick="activate()">
+    Activate
+</button>
+```
+
+* React에서 클릭 이벤트 처리하는 예제 코드.
+
+```js
+<button onClick={activate()}>
+    Activate
+</button>
+```
+
+* 둘의 차이점은
+    1. 이벤트 이름이 onclick에서 onClick으로 변경.(Camel case)
+    2. 전달하려는 함순느 문자열에서 함수 그대로 전달.
+* 이벤트가 발생했을 때 해당 이벤트를 처리하는 함수를 "이벤트 핸들러(Event Handler)" 라고 합니다. 또는 이벤트가 발생하는 것을 계속 듣고 있다는 의미로 "이벤트 리스너(Event Listener)" 라고 부르기도 합니다.
+* 이벤트 핸들러 추가하는 방법은?
+* 버튼을 클릭하면 이벤트 핸들러 함수인 handleClick() 함수를 호출하도록 되어 있습니다.
+* bind를 사용하지 않으면 this.handleClick은 글로벌 스코프에서 호출되어, undefined으로 사용할 수 없기 때문입니다.
+* bind를 사용하지 않으려면 화살표 함수를 사용하는 방법도 있습니다.
+* 하지만 클래스 컴포넌트는 이제 거의 사용하지 않기 때문에 이 내용은 참고만 합니다.
+* 함수형에서 이벤트 핸들러를 정의하는 방법은 두 가지 입니다.
+* 함수형에서는 this를 사용하지 않고, onClick에서 바로 HandleClick을 넘기면 됩니다.
+  
+### 2. Arguments 전달하기
+* 함수를 정의할 때는 파라미터 혹은 매개변수, 함수를 사용할 때는 아귀먼트 혹은 인자 라고 부릅니다.
+* 이벤트 핸들러 매개변수를 전달해야 하는 경우도 많습니다.
+
+```js
+<button onClick={(event) => this.deleteItem(id, event)}>삭제하기</button>
+
+<button onClick={this.deleteItem.bind(this, id)}>삭제하기</button>
+```
+
+* 위의 코드는 모두 동일한 역할을 하지만 하나는 화살표 함수를, 다른 한나는 bind를 사용했습니다.
+* event라는 매개변수는 리액트의 이벤트 객체를 의미합니다.
+* 두 방법 모두 첫 번째 매개변수는 id이고 두 번째 매개변수로 event가 전달 됩니다.
+* 첫 번째 코드는 명시적으로 event를 매개변수로 넣어 주었고, 두 번째 코드는 id 이후 두번째 매개변수로 event가 자동 전달됩니다.
+* 함수형 컴포넌트에서 이벤트 핸들러에 매개변수를 전달한 때는 254페이지 코드와 같이 합니다.
+
+### 3. 조건부 렌더링이란?
+
+```js
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if(isLoggedIn) {
+        return <UseGreeting/>;
+    }
+    return <GuestGreeting/>;
+}
+```
+
+* props로 전달 박은 isLoggedln이 true이면 <UserGreeting/>을, false면 <GuestGreeting/>을 return 합니다.
+* 이와 같은 렌더링을 조건부 렌더링 이라고 합니다.
+
+### 4. 엘리먼트 변수
+* 렌더링해야 될 컴포넌트를 변수처럼 사용하는 방법이 엘리먼트 변수입니다.
+* 272페이지 코드 처럼 state에 따라 button 변수에 컴포넌트의 객체를 저장하여 return문에서 사용하고 있습니다.
+
+### 5. 인라인 조건
+* 필요한 곳에 조건문을 직접 넣어 사용하는 방법입니다.
+1. 인라인 if
+    * if문을 직접 사용하지 않고, 동일한 효과를 내기 위해 && 논리 연산자를 사용합니다.
+    * &&는 and연자로 모든 조건이 참일때만 참이 됩니다.
+    * 첫 번 조건이 거짓이면 두번째 조건을 판달할 필요가 없습니다. 단축평가.
+  
+    ```js
+    true && expression -> expression
+    false && expression -> false
+    ```
+
+   * 판단만 하지 않는 것이고 결과값은 그대로 리턴됩니다.
+2. 인라인 if-else
+    * 삼항 연산자를 사용합니다.
+    ```
+    조건문 ? 참일 경우 : 거짓일 경우
+    ```
+    * 문자열이나 엘리먼트를 넣어서 사용할 수도 있습니다.
+
+### 6. 컴포넌트 렌더링 막기
+* 컴포넌트를 렌더링하고 싶지 않을 때에는 null을 리턴합니다.
+
+<br>
+
+---
+
+<br>
+
 ## 0413 7주차 수업내용
 
 ### 1. 훅이란?
