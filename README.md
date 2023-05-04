@@ -44,6 +44,11 @@ const listItems = numbers.map((number) =>
 ### 6. 제어 컴포넌트
 * 제어 컴포넌트는 사용자가 입력한 값에 접근하고 제어할 수 있도록 해주는 컴포넌트 입니다.
 
+### 7. shared state
+* shared state는 말 그래도 공유된 state를 의미합니다.
+* state는 어떤 컴포넌트의 state에 있는 데이터를 여러 개의 하위 컴포넌트에서 공통적으로 사용하는 경우를 말합니다.
+* 하위 컴포넌트가 공통된 부모 컴포넌트의 state를 공유하여 사용하는 것을 shared state라고 합니다.
+
 <br>
 
 ---
